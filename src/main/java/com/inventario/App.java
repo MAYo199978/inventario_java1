@@ -4,7 +4,7 @@ package com.inventario;
 public class App {
 
     public static int calcularResta(int numero1, int numero2) {
-        return numero1 - ;
+        return numero1 - numero2;
     }
 
     public static void main(String[] args) {
