@@ -7,11 +7,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  pruebas:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Descargar código
+      - name: Descargar proyecto
         uses: actions/checkout@v4
 
       - name: Configurar Java 25
@@ -21,5 +21,15 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Compilar, ejecutar pruebas y generar JAR
-        run: mvn --batch-mode clean package
+      - name: Compilar proyecto
+        run: mvn --batch-mode compile
+
+      - name: Ejecutar programa Java
+        run: |
+          java -cp target/classes com.inventario.App
+
+      - name: Ejecutar pruebas unitarias JUnit
+        run: mvn --batch-mode test
+
+      - name: Generar archivo JAR
+        run: mvn --batch-mode package
